@@ -36,8 +36,19 @@ const Login = () => {
         }).catch(error => alert(error))
      }
 
+     //...login to app
     const loginToApp = (e) =>{
         e.preventDefault()
+
+        auth.signInWithEmailAndPassword(email, password)
+        .then((userAuth) => {
+            dispatch(login({
+                email: userAuth.user.email,
+                uid: userAuth.user.id,
+                displayName: userAuth.user.displayName,
+                profileUrl: userAuth.user.photoURL,
+            }))
+        })
     }
 
   return (

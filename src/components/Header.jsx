@@ -7,13 +7,25 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import WorkIcon from '@mui/icons-material/Work';
 import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { logout, selectUser } from '../features/userSlice';
+import { auth } from './Firestore/firebase';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
+
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch()
+
+  const logoutOfApp = () => {
+    dispatch((logout()))
+    auth.signOut()
+  }
+
   return (
     <>
     <div className="header">
     <div className="header_left">
-     <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/linkedin_logo_icon_170234.png" 
+     <img src="https://www.pinclipart.com/picdir/middle/97-971470_linkedin-linkedin-social-media-icons-clipart.png"
      alt="LinkeIn logo" />
 
      <div className="header_search">
@@ -28,7 +40,7 @@ const Header = () => {
       <HeaderOption Icon={WorkIcon} title='Jobs'/>
       <HeaderOption Icon={MessageIcon} title='Messaging'/>
       <HeaderOption Icon={NotificationsIcon} title='Notifications'/>
-      <HeaderOption avatar = "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png" title="Dayo Jaiye"/>    
+      <HeaderOption avatar={true} title="me" onClick={logoutOfApp}/>    
     </div>
 
     </div>

@@ -1,8 +1,11 @@
 import { Avatar } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './Sidebar.css'
+import {selectUser} from '../features/userSlice'
 
 const Sidebar = () => {
+    const user = useSelector(selectUser)
 
     const recentItem = (topics) =>(
         <div className="sidebar_recentItem">
@@ -17,9 +20,13 @@ const Sidebar = () => {
         <div className="sidebar_top">
             <img 
             src="https://www.pngmagic.com/product_images/simple-background-images-for-websites.jpg" alt="" />
-            <Avatar className='sidebar_avatar'/>
-            <h2>Dayo Jaiye</h2>
-            <h4>Software Enginner</h4>
+ 
+            <Avatar src={user.photoUrl} className='sidebar_avatar'>
+                {/* if no profile pic, display first letter of email */}
+                {user.email[0]}
+            </Avatar>
+            <h2>{user.displayName}</h2>
+            <h4>{user.email}</h4>
         </div>
 
         <div className="sidebar_stats">

@@ -6,6 +6,7 @@ import { auth } from './components/Firestore/firebase';
 import Header from './components/Header';
 import Login from './components/Login';
 import Sidebar from './components/Sidebar';
+import Widgets from './components/Widgets';
 import { login, logout, selectUser } from './features/userSlice';
 
 
@@ -39,10 +40,10 @@ function App() {
     {!user ? (
       <Login/>
     ) : (
-      <div className='app_body'>
+      <div className="app_body">
       <Sidebar/>
       <Feed/>
-      {/* Widgets */}
+      <Widgets/>
       </div>
     )}
     </div>
